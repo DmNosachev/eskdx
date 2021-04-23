@@ -33,11 +33,11 @@ html: html.tex html.aux example.tex \
 	latex2html -init_file latex2html-init -iso_language RU $<
 
 %.eps: %.svg
-	inkscape --without-gui --export-text-to-path \
+	inkscape --export-text-to-path \
 	    --export-eps=$@ $<
 
 %.pdf: %.svg
-	inkscape --without-gui --export-text-to-path \
+	inkscape --export-text-to-path \
 	    --export-pdf=$@ $<
 
 clean:
