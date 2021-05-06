@@ -54,6 +54,8 @@
 \ProcessOptions\relax
 
 \LoadClass[\ESKD@docfont]{extarticle}
+
+\RequirePackage{xltxtra}
 \RequirePackage{eskdlang}
 \RequirePackage[a4paper,formII]{eskdstamp}
 \RequirePackage{eskdindent}

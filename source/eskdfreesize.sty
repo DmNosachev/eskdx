@@ -13,9 +13,9 @@
 % This work consists of all files listed in manifest.txt.
 %
 
-% Пакет предоставляет возможность вставки листа
-% почти любого размера (ограничения описаны в руководстве
-% пользователя eskdx):
+% п÷п╟п╨п╣я┌ п©я─п╣п╢п╬я│я┌п╟п╡п╩я▐п╣я┌ п╡п╬п╥п╪п╬п╤п╫п╬я│я┌я▄ п╡я│я┌п╟п╡п╨п╦ п╩п╦я│я┌п╟
+% п©п╬я┤я┌п╦ п╩я▌п╠п╬пЁп╬ я─п╟п╥п╪п╣я─п╟ (п╬пЁя─п╟п╫п╦я┤п╣п╫п╦я▐ п╬п©п╦я│п╟п╫я▀ п╡ я─я┐п╨п╬п╡п╬п╢я│я┌п╡п╣
+% п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐ eskdx):
 
 
 %
@@ -27,10 +27,10 @@
 
 \RequirePackage{eskdstamp}
  
-% переключение размера возможно только в pdflatex.
-% Tем не менее, latex тоже сможет собрать такой документ, 
-% но все большие страницы
-% обрежет по размерам формата, установленного в documentclass
+% п©п╣я─п╣п╨п╩я▌я┤п╣п╫п╦п╣ я─п╟п╥п╪п╣я─п╟ п╡п╬п╥п╪п╬п╤п╫п╬ я┌п╬п╩я▄п╨п╬ п╡ pdflatex.
+% Tп╣п╪ п╫п╣ п╪п╣п╫п╣п╣, latex я┌п╬п╤п╣ я│п╪п╬п╤п╣я┌ я│п╬п╠я─п╟я┌я▄ я┌п╟п╨п╬п╧ п╢п╬п╨я┐п╪п╣п╫я┌, 
+% п╫п╬ п╡я│п╣ п╠п╬п╩я▄я┬п╦п╣ я│я┌я─п╟п╫п╦я├я▀
+% п╬п╠я─п╣п╤п╣я┌ п©п╬ я─п╟п╥п╪п╣я─п╟п╪ я└п╬я─п╪п╟я┌п╟, я┐я│я┌п╟п╫п╬п╡п╩п╣п╫п╫п╬пЁп╬ п╡ documentclass
 \RequirePackage{ifpdf}
 \ifpdf{}
 \else{\PackageWarningNoLine{eskdfreesize}
@@ -40,9 +40,9 @@
 
 
 
-% в eskdstamp для ускорения отрисовки рамки применен \savebox
-% в нашем случае это неудобно, будем рисовать персонально
-% на каждой странице
+% п╡ eskdstamp п╢п╩я▐ я┐я│п╨п╬я─п╣п╫п╦я▐ п╬я┌я─п╦я│п╬п╡п╨п╦ я─п╟п╪п╨п╦ п©я─п╦п╪п╣п╫п╣п╫ \savebox
+% п╡ п╫п╟я┬п╣п╪ я│п╩я┐я┤п╟п╣ я█я┌п╬ п╫п╣я┐п╢п╬п╠п╫п╬, п╠я┐п╢п╣п╪ я─п╦я│п╬п╡п╟я┌я▄ п©п╣я─я│п╬п╫п╟п╩я▄п╫п╬
+% п╫п╟ п╨п╟п╤п╢п╬п╧ я│я┌я─п╟п╫п╦я├п╣
 \newcommand{\ESKDdrawFrameFree}{%
   \put(\ESKDltu{\ESKDframeX},\ESKDltu{\ESKDframeY}){%
     \setlength{\unitlength}{1mm}%
@@ -54,10 +54,10 @@
   \put(\ESKDltu{\ESKDframeW},0){\line(0,1){\ESKDltu{\ESKDframeH}}}
   \end{picture}}}
   
-% содержимое нестандартной графы 32 по умолчанию
+% я│п╬п╢п╣я─п╤п╦п╪п╬п╣ п╫п╣я│я┌п╟п╫п╢п╟я─я┌п╫п╬п╧ пЁя─п╟я└я▀ 32 п©п╬ я┐п╪п╬п╩я┤п╟п╫п╦я▌
 \newcommand\ESKDtheColumnXXXIIfree{\@nameuse{ESKDemptyFormatName}}
 
-% определим нашу собственную нестандартную графу 32
+% п╬п©я─п╣п╢п╣п╩п╦п╪ п╫п╟я┬я┐ я│п╬п╠я│я┌п╡п╣п╫п╫я┐я▌ п╫п╣я│я┌п╟п╫п╢п╟я─я┌п╫я┐я▌ пЁя─п╟я└я┐ 32
 \newcommand{\ESKDdrawColumnXXXIIfree}{%
   \setlength{\ESKD@tmpdima}{\ESKDframeX+\ESKDframeW-50mm}%
   \setlength{\ESKD@tmpdimb}{\ESKDframeY-3.7mm}%
@@ -66,10 +66,10 @@
 
 
 
-% Определим новый стиль. Подробнее про определение своих стилей
-% можно прочитать в руководстве пользователя eskdx,
-% или заглянуть в eskdstamp.sty,
-% кусок оттуда был использован как основа для стиля freesize
+% п·п©я─п╣п╢п╣п╩п╦п╪ п╫п╬п╡я▀п╧ я│я┌п╦п╩я▄. п÷п╬п╢я─п╬п╠п╫п╣п╣ п©я─п╬ п╬п©я─п╣п╢п╣п╩п╣п╫п╦п╣ я│п╡п╬п╦я┘ я│я┌п╦п╩п╣п╧
+% п╪п╬п╤п╫п╬ п©я─п╬я┤п╦я┌п╟я┌я▄ п╡ я─я┐п╨п╬п╡п╬п╢я│я┌п╡п╣ п©п╬п╩я▄п╥п╬п╡п╟я┌п╣п╩я▐ eskdx,
+% п╦п╩п╦ п╥п╟пЁп╩я▐п╫я┐я┌я▄ п╡ eskdstamp.sty,
+% п╨я┐я│п╬п╨ п╬я┌я┌я┐п╢п╟ п╠я▀п╩ п╦я│п©п╬п╩я▄п╥п╬п╡п╟п╫ п╨п╟п╨ п╬я│п╫п╬п╡п╟ п╢п╩я▐ я│я┌п╦п╩я▐ freesize
 \ESKDnewStyle{freesize}{8mm}
 \ESKDputOnStyle{freesize}{frame}{\ESKDdrawFrameFree}
 \ESKDputOnStyle{freesize}{stamp}{\ESKDdrawStampIIa}
@@ -86,7 +86,7 @@
   \ESKDputOnStyle{freesize}{columnxxxi}{\ESKDdrawColumnXXXI}
 \fi
 \ifESKD@enable@column@xxxii
-  % наша новая графа 32
+  % п╫п╟я┬п╟ п╫п╬п╡п╟я▐ пЁя─п╟я└п╟ 32
   \ESKDputOnStyle{freesize}{columnxxxii}{\ESKDdrawColumnXXXIIfree}
 \fi
 \ifESKD@enable@column@xxxiii
@@ -100,14 +100,14 @@
 \fi
 
 
-% вспомогательные счетчики для записей в лог
+% п╡я│п©п╬п╪п╬пЁп╟я┌п╣п╩я▄п╫я▀п╣ я│я┤п╣я┌я┤п╦п╨п╦ п╢п╩я▐ п╥п╟п©п╦я│п╣п╧ п╡ п╩п╬пЁ
 \newcounter{ESKD@free@sizepagebegin}
 \newcounter{ESKD@free@sizepageend}
 
-% теперь самое сложное - сам переключатель
+% я┌п╣п©п╣я─я▄ я│п╟п╪п╬п╣ я│п╩п╬п╤п╫п╬п╣ - я│п╟п╪ п©п╣я─п╣п╨п╩я▌я┤п╟я┌п╣п╩я▄
 \newcommand{\ESKDfreeSize}[3]{%
   \ESKDclearDoublePage%
-  \setcounter{ESKD@free@sizepagebegin}{\value{page}}% запомним текущую страницу
+  \setcounter{ESKD@free@sizepagebegin}{\value{page}}% п╥п╟п©п╬п╪п╫п╦п╪ я┌п╣п╨я┐я┴я┐я▌ я│я┌я─п╟п╫п╦я├я┐
   \pdfpagewidth=#1%
   \pdfpageheight=#2%
   \setlength{\ESKD@origin@y}{#2-1in}%
@@ -115,18 +115,18 @@
   \setlength{\ESKDframeH}{\pdfpageheight-\ESKD@margin@t-\ESKD@margin@b}%
   \ESKDstyle{freesize}%
   \expandafter{#3}%
-  % зафиксируем факт вставки листа в \jobname.log
+  % п╥п╟я└п╦п╨я│п╦я─я┐п╣п╪ я└п╟п╨я┌ п╡я│я┌п╟п╡п╨п╦ п╩п╦я│я┌п╟ п╡ \jobname.log
   \ESKDclearDoublePage%
-  \renewcommand\ESKDtheColumnXXXIIfree{\@nameuse{ESKDemptyFormatName}}% сброс графы 32
+  \renewcommand\ESKDtheColumnXXXIIfree{\@nameuse{ESKDemptyFormatName}}% я│п╠я─п╬я│ пЁя─п╟я└я▀ 32
   \setcounter{ESKD@free@sizepageend}{\value{page}}%
   \addtocounter{ESKD@free@sizepageend}{-1}%
-  \ifthenelse{\value{ESKD@free@sizepagebegin}<\value{ESKD@free@sizepageend}}% латех начал новую страницу
+  \ifthenelse{\value{ESKD@free@sizepagebegin}<\value{ESKD@free@sizepageend}}% п╩п╟я┌п╣я┘ п╫п╟я┤п╟п╩ п╫п╬п╡я┐я▌ я│я┌я─п╟п╫п╦я├я┐
     {\immediate\write0{eskdfreesize: sheet(s) with size (#1 x #2) inserted 
       at page(s) \noexpand[\arabic{ESKD@free@sizepagebegin}%
       -\arabic{ESKD@free@sizepageend}\noexpand]}}
     {\immediate\write0{eskdfreesize: sheet(s) with size (#1 x #2) inserted 
       at page(s) \noexpand[\arabic{ESKD@free@sizepageend}\noexpand]}}
-  % теперь вернем всё как было до нас
+  % я┌п╣п©п╣я─я▄ п╡п╣я─п╫п╣п╪ п╡я│я▒ п╨п╟п╨ п╠я▀п╩п╬ п╢п╬ п╫п╟я│
   \setlength{\ESKD@origin@y}{\paperheight-1in}%
   \pdfpageheight=\paperheight%
   \pdfpagewidth=\paperwidth%
@@ -137,7 +137,7 @@
 }
 
 
-% Определим несколько готовых к употреблению форматов
+% п·п©я─п╣п╢п╣п╩п╦п╪ п╫п╣я│п╨п╬п╩я▄п╨п╬ пЁп╬я┌п╬п╡я▀я┘ п╨ я┐п©п╬я┌я─п╣п╠п╩п╣п╫п╦я▌ я└п╬я─п╪п╟я┌п╬п╡
 \newcommand{\ESKDlandscapeAIII}[1]{%
   \renewcommand\ESKDtheColumnXXXIIfree{\@nameuse{ESKDa3FormatName}}%
   \ESKDfreeSize{420mm}{297mm}{#1}}
@@ -171,6 +171,6 @@
   \ESKDfreeSize{841mm}{1189mm}{#1}}
   
 \newcommand{\ESKDlandscapeBanner}[1]{%
-  % Пятиметровое полотно для подшивки гармошкой в обычную папку А4.
-  % Просто для демонстрации
+  % п÷я▐я┌п╦п╪п╣я┌я─п╬п╡п╬п╣ п©п╬п╩п╬я┌п╫п╬ п╢п╩я▐ п©п╬п╢я┬п╦п╡п╨п╦ пЁп╟я─п╪п╬я┬п╨п╬п╧ п╡ п╬п╠я▀я┤п╫я┐я▌ п©п╟п©п╨я┐ п░4.
+  % п÷я─п╬я│я┌п╬ п╢п╩я▐ п╢п╣п╪п╬п╫я│я┌я─п╟я├п╦п╦
   \ESKDfreeSize{5000mm}{297mm}{#1}}

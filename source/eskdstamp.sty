@@ -187,7 +187,7 @@ tmargin=\ESKD@margin@t+\ESKD@padding@v,%
 bmargin=\ESKD@margin@b+\ESKD@padding@v,%
 inner=\ESKD@margin@si+\ESKD@padding@h,%
 outer=\ESKD@margin@so+\ESKD@padding@h,%
-headheight=0mm,headsep=0mm,footskip=0mm]{geometry}
+headheight=17pt,headsep=0mm,footskip=5.2pt]{geometry}
 
 \RequirePackage{lastpage}
 
@@ -934,13 +934,15 @@ headheight=0mm,headsep=0mm,footskip=0mm]{geometry}
 \setlength{\ESKD@curpad@h}{\ESKD@padding@h}
 \setlength{\ESKD@curpad@v}{\ESKD@padding@v}
 
-\RequirePackage{everyshi}
+%\RequirePackage{everyshi}
 \def\ESKD@curstyle{}
 \def\ESKD@thisstyle{}
 \def\ESKD@extra@Hook{}
 \def\ESKD@extra@ThisHook{}
+%% create new save box
+\newsavebox{\ESKDFRAME}
+
 \newcommand{\ESKD@ShipoutPicture}{%
-  \bgroup
     \ifESKD@twoside
       \ifodd\c@page
         \ESKDframeX=\ESKD@margin@si
@@ -955,29 +957,40 @@ headheight=0mm,headsep=0mm,footskip=0mm]{geometry}
     \advance\ESKDstampX \ESKDframeW
     \advance\ESKDstampX -185mm
     \ESKDstampY=\ESKDframeY
+    \savebox{\ESKDFRAME}(0,0){
     \unitlength=1mm
-    \global\setbox\@cclv\vbox{%
-      \vbox{\let\protect\relax
-	\begin{picture}(0,0)(\ESKDltu{\ESKD@origin@x},\ESKDltu{\ESKD@origin@y})%
-	  \ifx\ESKD@thisstyle\@empty
-	    \let\ESKD@thisstyle\ESKD@curstyle
-	  \fi
-	  \loop
-	  \ifnum \ESKD@hash@pos{@style@draw@\ESKD@thisstyle} %
-	    < \ESKD@hash@count{@style@draw@\ESKD@thisstyle}
-	    \ESKD@hash@next@value{@style@draw@\ESKD@thisstyle}\relax
-	  \repeat
-	  \ifx\ESKD@extra@ThisHook\@empty%
-	    \ESKD@extra@Hook\else\ESKD@extra@ThisHook%
-	  \fi%
-	  \global\let\ESKD@thisstyle\@empty%
-	  \global\let\ESKD@extra@ThisHook\@empty%
-	\end{picture}}%
-	\nointerlineskip%
-      \box\@cclv}%
-  \egroup
+    \begin{picture}(0,0)(\ESKDltu{\ESKD@origin@x},\ESKDltu{\ESKD@origin@y})%
+      \ifx\ESKD@thisstyle\@empty
+        \let\ESKD@thisstyle\ESKD@curstyle
+      \fi
+      \loop
+      \ifnum \ESKD@hash@pos{@style@draw@\ESKD@thisstyle} %
+        < \ESKD@hash@count{@style@draw@\ESKD@thisstyle}
+        \ESKD@hash@next@value{@style@draw@\ESKD@thisstyle}\relax
+      \repeat
+      \global\let\ESKD@thisstyle\@empty%
+    \end{picture}}%
 }
-\EveryShipout{\ESKD@ShipoutPicture}
+
+\RequirePackage{fancyhdr}
+%% set "fancy" pagestyle and apply it for all pages as default
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}%% disable ruler in header
+%% setup "fancy" pagestyle
+\fancyhf{}
+\fancyhead[L]{%
+\unitlength=1mm
+\begin{picture}(0,0)(0,0)
+  \ifthenelse{\equal{\ESKD@curstyle}{title}}{% for title page style
+  \ESKD@ShipoutPicture             % create saved box
+  \put(-0.18,-16.92){\usebox{\ESKDFRAME}} % put saved
+  }{ % for any other page style
+  \ESKD@ShipoutPicture             % create saved box
+  \put(1.82,-11.92){\usebox{\ESKDFRAME}}  % put saved box
+  }
+\end{picture}
+}
+%\EveryShipout{\ESKD@ShipoutPicture}
 
 \RequirePackage{chngpage}
 \RequirePackage{ifpdf}
@@ -985,7 +998,7 @@ headheight=0mm,headsep=0mm,footskip=0mm]{geometry}
 % \ESKD@tmpdima --- width
 % \ESKD@tmpdimb --- height
 \newcommand{\ESKDstyle}[1]{%
-\pagestyle{empty}%
+%\pagestyle{empty}%
 \def\ESKD@curstyle{#1}%
 \ifpdf%
   \setlength{\ESKD@tmpdimb}{\pdfpageheight}%
@@ -1000,7 +1013,7 @@ headheight=0mm,headsep=0mm,footskip=0mm]{geometry}
 \let\ESKD@thisstyle\@empty}
 
 \newcommand{\ESKDthisStyle}[1]{%
-\thispagestyle{empty}%
+%\thispagestyle{empty}%
 \def\ESKD@thisstyle{#1}%
 \ifpdf%
   \setlength{\ESKD@tmpdimb}{\pdfpageheight}%
